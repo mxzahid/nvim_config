@@ -1,5 +1,3 @@
--- ===== Keymap Cheat Sheet (popup) =====
-
 local CHEATSHEET = [[
 ╭───────────────────────────────╮
 │          Keymap Guide         │
@@ -41,7 +39,6 @@ local CHEATSHEET = [[
 ]]
 
 local function open_cheatsheet()
-  -- buffer
   local buf = vim.api.nvim_create_buf(false, true)
 
   -- allow writing first
@@ -50,14 +47,12 @@ local function open_cheatsheet()
   vim.api.nvim_buf_set_option(buf, "modifiable", false) -- lock after writing
   vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
 
-  -- size/position
   local ui = vim.api.nvim_list_uis()[1]
   local width  = math.min(80, math.floor(ui.width * 0.7))
   local height = math.min(24, math.floor(ui.height * 0.7))
   local row = math.floor((ui.height - height) / 2)
   local col = math.floor((ui.width  - width)  / 2)
 
-  -- window
   local win = vim.api.nvim_open_win(buf, true, {
     relative = "editor",
     row = row, col = col,
@@ -68,13 +63,11 @@ local function open_cheatsheet()
     title_pos = "center",
   })
 
-  -- make it easy to close
   vim.keymap.set("n", "q", function()
     if vim.api.nvim_win_is_valid(win) then vim.api.nvim_win_close(win, true) end
   end, { buffer = buf, nowait = true, silent = true })
 end
 
--- Command & mapping
 vim.api.nvim_create_user_command("KeymapsHelp", open_cheatsheet, {})
 vim.keymap.set("n", "<leader>?", open_cheatsheet, { desc = "Show keymap guide" })
 
