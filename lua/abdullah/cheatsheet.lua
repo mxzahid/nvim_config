@@ -35,7 +35,19 @@ local CHEATSHEET = [[
   <leader>w    cycle windows
 
 [Files]
-  <leader>pv   Open netrw (Ex)
+  <leader>pv  Open netrw (Ex)
+
+[OpenCode]
+  <leader>ot  Toggle embedded
+  <leader>oa  Ask about cursor
+  (visual) <leader>oa  Ask about selection
+  <leader>o+  Add buffer to prompt
+  (visual) <leader>o+  Add selection to prompt
+  <leader>oe  Explain code
+  <leader>on  New session
+  <S-C-u>    Messages half page up
+  <S-C-d>    Messages half page down
+  <leader>os  Select prompt
 ]]
 
 local function open_cheatsheet()
